@@ -71,6 +71,96 @@ paths:
           $ref: '#/components/responses/500'
 
 
+  '/Semestre/{id}':
+    get:
+      tags:
+        - Semestre
+      summary: Get semestre by identifier
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      operationId: getSemestreById
+      responses:
+        '200':
+          description: The identified semestre
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Semestre'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+          
+  /Semestre:
+    get:
+      tags:
+        - Semestre
+      summary: Get all Semestre
+      operationId: getSemestre
+      responses:
+        '200':
+          description: List of Semestre
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Semestre'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+    put:
+      tags:
+        - Semestre
+      summary: Create new Semestre or update existing Semestre
+      operationId: createOrUpdateSemestre
+      requestBody:
+        description: Semestre to update
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Semestre'
+      responses:
+        '200':
+          description: The created or updated Semestre
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Semestre'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+        '429':
+          $ref: '#/components/responses/429'
+        '500':
+          $ref: '#/components/responses/500'
+        
+    
   '/subject/{id}':
     get:
       tags:
@@ -966,6 +1056,16 @@ components:
           schema:
             $ref: '#/components/schemas/InternalServerException'
   schemas:
+    Semestre:
+       properties:
+        id:
+          type: string
+        Name:
+          type: integer
+        Date-Debut:
+          type: string
+        Date-Fin:
+          type: string
     Subject:
       properties:
         id:
